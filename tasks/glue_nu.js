@@ -42,6 +42,8 @@ module.exports = function (grunt) {
 	
 	// Turned out as quite the spaghetti code once I finally had a good API/implementation.
 	// Would be nice to write some tests do some OO refactoring.
+	
+	 // todo: look at/test conf files use
 
 	grunt.registerMultiTask('glue_nu', 'Create sprites automatically with Glue, but the grunt way!', function() {
 
