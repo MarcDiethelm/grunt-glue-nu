@@ -145,6 +145,6 @@ Run grunt with the `--debug` option to see information such as the `glue` comman
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-see [CHANGELOG.md]()
+see [CHANGELOG.md](CHANGELOG.md)
 
 
