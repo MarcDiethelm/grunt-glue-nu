@@ -109,7 +109,7 @@ module.exports = function (grunt) {
 			if (!this.directToGlue) {
 				// don't copy files if source is simple and bundleName is either not set or the same as task target name
 				// why? because Glue has no way to specify the generated file names except through the source folder
-				if ( isSourceSimple && (!this.options.bundleName || this.options.bundleName == this.taskTargetName) ) {
+				if ( isSourceSimple && (!this.options.bundleName || this.options.bundleName === this.taskTargetName) ) {
 					// just pass the location to glue
 					this.glueSrcDir = this.taskData.src;
 				}
@@ -135,7 +135,7 @@ module.exports = function (grunt) {
 
 				if (err) {
 					// Glue thinks it's terrible when the src is empty. We don't
-					if (err.message.indexOf('No images found') != -1) {
+					if (err.message.indexOf('No images found') !== -1) {
 						grunt.log.warn(err.message.replace(/^Error: /, 'Glue: '));
 					}
 					else {
@@ -186,11 +186,11 @@ module.exports = function (grunt) {
 			var  taskDataSrc = this.taskData.src
 				,src
 			;
-			if (typeof taskDataSrc == 'string') {
+			if (typeof taskDataSrc === 'string') {
 				src = taskDataSrc;
 			}
 			// is it an array consisting of one string?
-			else if (grunt.util.kindOf(taskDataSrc) == 'array' && taskDataSrc.length == 1) {
+			else if (grunt.util.kindOf(taskDataSrc) === 'array' && taskDataSrc.length === 1) {
 				src = taskDataSrc[0];
 			}
 
@@ -242,7 +242,7 @@ module.exports = function (grunt) {
 
 			for (arg in this.options) {
 				// don't push non-glue options into glue args
-				if (extendedOptions.indexOf(arg) != -1) {
+				if (extendedOptions.indexOf(arg) !== -1) {
 					continue;
 				}
 				// don't push options that aren't set into glue args
@@ -250,10 +250,12 @@ module.exports = function (grunt) {
 					continue;
 				}
 
-				if (typeof this.options[arg] == 'boolean')
+				if (typeof this.options[arg] === 'boolean') {
 					glueArgs.push('--'+ arg);
-				else
+				}
+				else {
 					glueArgs.push('--'+ arg +'='+ this.options[arg]);
+				}
 			}
 
 			glueArgs.push(this.glueSrcDir); // add the source dir last

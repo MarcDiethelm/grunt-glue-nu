@@ -1,13 +1,25 @@
 {
-  "curly": true,
-  "eqeqeq": true,
-  "immed": true,
-  "latedef": true,
-  "newcap": true,
-  "noarg": true,
-  "sub": true,
-  "undef": true,
-  "boss": true,
-  "eqnull": true,
-  "node": true
+	"curly": true
+	,"eqeqeq": true
+	,"immed": true
+	,"latedef": true
+	,"newcap": true
+	,"noarg": true
+	,"sub": true
+	,"undef": true
+	,"boss": true
+	,"eqnull": true
+	,"node": true
+
+	,"laxcomma"           : true
+	,"smarttabs"          : true
+	,"expr"               : true
+	,"asi"                : true
+	,"loopfunc"           : true
+	,"nonew"              : true
+	,"globals": {
+		"console"         : true
+		,"log"            : true
+		,"dir"            : true
+	}
 }
