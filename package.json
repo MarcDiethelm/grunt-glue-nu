@@ -1,7 +1,7 @@
 {
   "name": "grunt-glue-nu",
   "description": "Create sprites automatically with Glue, but the grunt way!",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "homepage": "https://github.com/MarcDiethelm/grunt-glue-nu",
   "author": {
     "name": "Marc Diethelm",
