@@ -33,14 +33,14 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-glue-nu');
 ```
 
-## The "glue_nu" task
+## The "glue" task
 
 ### Overview
-In your project's Gruntfile, add a section named `glue_nu` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `glue` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-	glue_nu: {
+	glue: {
 		options: {
 			// Task-specific options go here.
 		},
@@ -60,7 +60,7 @@ aspect of that through the options of course.
 
 ```js
 grunt.initConfig({
-	glue_nu: {
+	glue: {
 		src: ['path/to/sprites/'],
 		dest: 'output/folder/'
 	}
@@ -102,7 +102,7 @@ warning and lets Grunt continue doing its job.
 
 ```js
 grunt.initConfig({
-	glue_nu: {
+	glue: {
 		options: {
 			css                : 'dist',
 			less               : true,

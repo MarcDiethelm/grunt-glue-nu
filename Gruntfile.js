@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 		},
 
 		// Configuration to be run (and then tested).
-		glue_nu: {
+		glue: {
 			options: {
 				namespace: 's'
 			}
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'glue_nu'/*, 'mochacli'*/]);
+	grunt.registerTask('test', ['clean', 'glue'/*, 'mochacli'*/]);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', [/*'jshint'*/, 'test']);

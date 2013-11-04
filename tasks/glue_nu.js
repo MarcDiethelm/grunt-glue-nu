@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 	// todo: need to write some tests (bdd?)
 	// todo: look at/test conf files use
 
-	grunt.registerMultiTask('glue_nu', 'Create sprites automatically with Glue, but the grunt way!', function() {
+	grunt.registerMultiTask('glue', 'Create sprites automatically with Glue, but the grunt way!', function() {
 
 		var  bundle = new Bundle()
 			,done = this.async()
