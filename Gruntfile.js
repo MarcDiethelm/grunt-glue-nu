@@ -35,36 +35,33 @@ module.exports = function (grunt) {
 			}
 
 			,bundle_empty: {
-				options: {
-				},
+				options: {},
 				src: 'test/fixtures/empty/',
 				dest: 'test/tmp'
 			}
 			,no_process_with_options: {
 				options: {
-					crop: true
+					crop: true,
+					bundleName: 'simple-dir'
 				},
 				src: [
 					'test/fixtures/icon/'
 				],
 				dest: 'test/tmp'
 			}
-			,glueargs_no_process: {
+			,glueargs: {
 				options: {
-					glueArgs: '--crop test/fixtures/icon/ test/tmp' // forces _process: false
+					glueArgs: '--crop test/fixtures/icon/ test/tmp'
 				}
 			}
 			,'default': {
-				options: {
-					//bundleName: 'bundle'
-					//,'sprite-namespace': 'default'
-				},
+				options: {},
 				src: [
 					'test/fixtures/**/*.{png,jpg,conf}'
 				],
 				dest: 'test/tmp'
 			}
-			,'default_folders': {
+			,default_folders: {
 				options: {
 					bundleName: 'folders'
 					,'sprite-namespace': 'folders'

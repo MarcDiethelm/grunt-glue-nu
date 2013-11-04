@@ -104,9 +104,13 @@ warning and lets Grunt continue doing its job.
 grunt.initConfig({
 	glue_nu: {
 		options: {
-			optipng: true,
-			retina: true,
-			url: 'static/img/'
+			css                : 'dist',
+			less               : true,
+			url                : '/static/img',
+			namespace          : 's',
+			'sprite-namespace' : '',
+			retina:            : true
+			optipng            : true
 		},
 		backgrounds: {
 			options: {
