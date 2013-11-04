@@ -74,7 +74,7 @@ and/or target options.**
 
 In addition grunt-glue-nu adds a few configuration options that are not passed on to glue. They are listed here:
 
-- **options.bundleName** `{String} task:target` – The file names of the files created for the sprite bundle. By default they are the same as the task target.
+- **options.bundleName** `{String} task:target` – The file names of the files created for the sprite bundle. By default they are the same as the task target name.
 
 - **options.tmpDir** `{String} require('os').tmpdir()` – A temporary source folder for glue to operate in. By default it's your OS's temp directory.
 
@@ -143,7 +143,7 @@ grunt.initConfig({
 Run grunt with the `--debug` option to see information such as the `glue` command with the exact arguments used and which files and folder are being processed by Glue
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+[How to contribute to a project on Github](https://gist.github.com/MarcDiethelm/7303312)
 
 ## Release History
 see [CHANGELOG.md](CHANGELOG.md)
