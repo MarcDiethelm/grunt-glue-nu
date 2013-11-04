@@ -5,6 +5,6 @@
 - ...
 
 
-## 0.1.0 — 2013-xx-xx
+## 0.1.0-beta.1 — 2013-11-04
 
-- First version
+- First version. Awesome.
