@@ -12,7 +12,7 @@ options, adding some sensible defaults in order to minimize the need for configu
 
 Glue supports .less style sheet output.
 
-**☞** Jump to [Default usage](#default-usage)
+**☞** Jump to [Usage](#using-the-glue-task)
 
 grunt-glue-nu also allows you to send the argument to glue as a string, bypassing the plugin logic. Meaning you can
 migrate to this plugin quickly and sort things out later. Or dodge bugs, should the need arise.
@@ -33,10 +33,15 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-glue-nu');
 ```
 
-## The "glue" task
 
-### Overview
-In your project's Gruntfile, add a section named `glue` to the data object passed into `grunt.initConfig()`.
+### Using the glue task
+
+In your project's Gruntfile, add a section named `glue` to the data object passed into `grunt.initConfig()`. This
+section is called a task.
+
+*Minimal config*: You must specify the task target's `src` and `dest` properties.
+The file names of the sprite bundle and the sprite namespace will then be the same as the task target. You can change
+any aspect of that through the options of course.
 
 ```js
 grunt.initConfig({
@@ -44,35 +49,25 @@ grunt.initConfig({
 		options: {
 			// Task-specific options go here.
 		},
+		// Target-specific file lists and/or options go here.
 		your_target: {
-			// Target-specific file lists and/or options go here.
-			options: {}
+			 src: ['path/to/sprites/'],
+			 dest: 'output/folder/'
 		}
 	}
 });
 ```
 
-### Default usage
-
-At the very minimum you must specify the task target's `src` and `dest` properties.
-The file names of the sprite bundle and the sprite namespace will be the same as the task target. You can change any
-aspect of that through the options of course.
-
-```js
-grunt.initConfig({
-	glue: {
-		src: ['path/to/sprites/'],
-		dest: 'output/folder/'
-	}
-});
-```
+When setting up or troubleshooting a task it's always a good idea to run grunt with the `--debug` option to see
+information such as the resulting exact arguments used with the `glue` command and which files and folder are being
+processed by Glue.
 
 ### Options
 
 **You can pass [any command line options supported by glue](http://glue.readthedocs.org/en/latest/options.html) as task
 and/or target options.**
 
-In addition grunt-glue-nu adds a few configuration options that are not passed on to glue. They are listed here:
+In addition grunt-glue-nu has a few configuration options that are not passed on to glue.
 
 - **options.bundleName** `{String} task:target` – The file names of the files created for the sprite bundle. By default they are the same as the task target name.
 
@@ -82,17 +77,17 @@ In addition grunt-glue-nu adds a few configuration options that are not passed o
 	then ignored for this target. 
 
 
-#### Glue defaults
+#### Default options for Glue
 
 grunt-glue-nu sets some defaults for glue options that are deemed helpful.
 
 ```js
-css: dest              // Write the sprite style sheet in your supplied dest
-img: dest              // Write the sprite sheet in your supplied dest
-recursive: true        // process sprites in sub-folders
-crop: true             // crop sprites minimizing empty pixels
-force: true            // forces glue to execute even if it detects no changes in the input
-debug: true            // make glue return useful feedback
+css       : dest dir          // Write the sprite style sheet in your supplied dest
+img       : dest dir          // Write the sprite sheet in your supplied dest
+recursive : true              // process sprites in sub-folders
+crop      : true              // crop sprites minimizing empty pixels
+force     : true              // forces glue to execute even if it detects no changes in the input
+debug     : true              // make glue return useful feedback
 ```
 
 Glue by itself will exit with an error code if there are no images in the source folders. grunt-glue-nu catches that, prints a
@@ -137,10 +132,6 @@ grunt.initConfig({
 	}
 });
 ```
-
-## Troubleshooting
-
-Run grunt with the `--debug` option to see information such as the `glue` command with the exact arguments used and which files and folder are being processed by Glue
 
 ## Contributing
 [How to contribute to a project on Github](https://gist.github.com/MarcDiethelm/7303312)
