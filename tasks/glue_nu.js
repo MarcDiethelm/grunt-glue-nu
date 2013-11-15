@@ -251,7 +251,8 @@ module.exports = function (grunt) {
 				}
 
 				if (typeof this.options[arg] === 'boolean') {
-					glueArgs.push('--'+ arg);
+					// only add boolean option if value is true
+					this.options[arg] === true && glueArgs.push('--'+ arg);
 				}
 				else {
 					glueArgs.push('--'+ arg +'='+ this.options[arg]);

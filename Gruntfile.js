@@ -65,6 +65,7 @@ module.exports = function (grunt) {
 				options: {
 					bundleName: 'folders'
 					,'sprite-namespace': 'folders'
+					,project: false
 				},
 				src: [
 					 'test/fixtures/icon'
