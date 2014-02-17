@@ -34,6 +34,10 @@ module.exports = function (grunt) {
 				namespace: 's'
 			}
 
+			,zeroconf: {
+				src: 'test/fixtures/icon/',
+				dest: 'test/tmp/zeroconf'
+			}
 			,bundle_empty: {
 				options: {},
 				src: 'test/fixtures/empty/',
