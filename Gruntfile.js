@@ -77,6 +77,15 @@ module.exports = function (grunt) {
 				],
 				dest: 'test/tmp'
 			}
+			,retina: {
+				options: {
+					 retina: true
+					,url: '/static/'
+					//,imagemagick: true
+				},
+				src:'test/fixtures/icon',
+				dest: 'test/tmp'
+			}
 		},
 
 		// Unit tests.
