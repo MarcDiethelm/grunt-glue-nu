@@ -47,9 +47,16 @@ module.exports = function (grunt) {
 
 	grunt.registerMultiTask('glue', 'Create sprites automatically with Glue, but the grunt way!', function() {
 
-		var  bundle = new Bundle()
-			,done = this.async()
-		;
+		var  bundle, done;
+
+		if (this.filesSrc.length > 0 || (this.data.options && this.data.options.glueArgs) ) {
+			bundle = new Bundle();
+			done = this.async();
+		}
+		else {
+			grunt.log.warn('No sprites to compile.');
+			return true;
+		}
 
 		bundle
 			.configure(this)
