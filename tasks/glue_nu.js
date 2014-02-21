@@ -103,6 +103,8 @@ module.exports = function (grunt) {
 			this.taskData.options = this.taskData.options || {};
 			this.directToGlue = !!this.taskData.options.glueArgs;
 			this.taskTargetName = taskTarget.target;
+			// may be set by this.isSrcSimpleDir()
+			this.srcDirName = null;
 
 			if (!this.directToGlue) {
 				this.checkRequiredInput();
@@ -112,12 +114,14 @@ module.exports = function (grunt) {
 		}
 
 		,make: function() {
+			// if true this sets this.srcDirName
 			var isSourceSimple = this.isSrcSimpleDir();
 
 			if (!this.directToGlue) {
-				// don't copy files if source is simple and bundleName is either not set or the same as task target name
+
+				// don't copy files if source is simple and bundleName is either not set or the same as the src folder name
 				// why? because Glue has no way to specify the generated file names except through the source folder
-				if ( isSourceSimple && (!this.options.bundleName || this.options.bundleName === this.taskTargetName) ) {
+				if ( isSourceSimple && (!this.options.bundleName || this.options.bundleName === this.srcDirName) ) {
 					// just pass the location to glue
 					this.glueSrcDir = this.taskData.src;
 				}
@@ -204,6 +208,7 @@ module.exports = function (grunt) {
 			}
 
 			if ( src && grunt.file.isDir(src) ) {
+				this.srcDirName = path.basename(src);
 				return true;
 			}
 			else {
