@@ -159,6 +159,7 @@ module.exports = function (grunt) {
 
 		,clean: function() {
 			// remove the tmpDir and any glueSrcDir it contains, must force because it's outside of working dir.
+			grunt.log.debug('Removing tmp dir %s', this.options.tmpDir);
 			this.isTmpDirCreated && grunt.file.delete(this.options.tmpDir, {force: true});
 			return true;
 		}
@@ -213,20 +214,26 @@ module.exports = function (grunt) {
 		,copyFilesToTmpDir: function() {
 			var bundleTmpDir = path.join(this.options.tmpDir, this.options.bundleName);
 
+			grunt.log.debug('Creating tmp dir for glue: %s', bundleTmpDir);
+
 			// copy all files to a tmp folder for glue to work in
 			this.taskFilesSrcArray.forEach(function eachSrcFile(file, index, array) {
+
 
 				var basename = path.basename(file);
 
 				// file
 				if (!grunt.file.isDir(file)) {
+					grunt.log.debug('Copy file %s to tmp dir', file);
 					grunt.file.copy(file, path.join(bundleTmpDir, basename));
 				}
 				// folder
 				else {
+					grunt.log.debug('Copy folder %s to tmp dir', file);
 					this.copySubDir(file, bundleTmpDir, basename);
 				}
 			}, this);
+
 			return bundleTmpDir;
 		}
 
