@@ -58,7 +58,7 @@ grunt.initConfig({
 });
 ```
 
-When setting up or troubleshooting a task it's always a good idea to run grunt with the `--debug` option to see
+**When setting up or troubleshooting** a task it's always a good idea to run grunt with the `--verbose` option to see
 information such as the resulting exact arguments used with the `glue` command and which files and folder are being
 processed by Glue.
 

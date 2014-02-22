@@ -3,6 +3,7 @@
 ## develop branch (0.2.0)
 
 - Make plugin behave as described. The target name is the default bundle name.
+- Much improved `--verbose` logging. Use it when setting up tasks and when encountering problems.
 
 
 ## 0.1.1 — 2014-02-17

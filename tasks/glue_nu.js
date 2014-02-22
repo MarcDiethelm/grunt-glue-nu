@@ -64,6 +64,7 @@ module.exports = function (grunt) {
 			.compile(function compileCb() {
 				bundle.clean();
 				done(); // tell grunt this task:target is complete
+				grunt.verbose.ok('Sprite bundle "%s" done', this.taskTargetName);
 			})
 		;
 
@@ -105,10 +106,14 @@ module.exports = function (grunt) {
 			this.taskTargetName = taskTarget.target;
 			// may be set by this.isSrcSimpleDir()
 			this.srcDirName = null;
+			this.verbose = !!grunt.cli.options.verbose;
 
 			if (!this.directToGlue) {
 				this.checkRequiredInput();
 				this.options = this.mergeOptions(defaults, taskTarget);
+			}
+			else {
+				grunt.verbose.writeln('Simple mode: Passing arguments directly to glue'.cyan);
 			}
 			return this;
 		}
@@ -143,28 +148,39 @@ module.exports = function (grunt) {
 				this.aGlueOptions = this.taskData.options.glueArgs.split(' ');
 			}
 
+			compileCb = compileCb.bind(this);
+
 			this.runGlue(function runGlueCb(err, result) {
+
+				var stdout = result.stdout;
+
+				if (this.verbose) {
+					stdout = stdout.replace(/\t/gm, '    ');
+					stdout = stdout.replace(/^/gm, '[glue] ');
+					grunt.verbose.writeln(stdout);
+				}
 
 				if (err) {
 					// Glue thinks it's terrible when the src is empty. We don't
 					if (err.message.indexOf('No images found') !== -1) {
-						grunt.log.warn(err.message.replace(/^Error: /, 'Glue: '));
+						grunt.log.warn('No images to process');
+						grunt.verbose.writeln(err.message.replace(/^Error:/, '[glue]'));
 					}
 					else {
 						grunt.fail.warn(err.message);
 					}
 				}
 
-				grunt.log.debug(result.stdout);
-
 				return compileCb();
 			});
 		}
 
 		,clean: function() {
-			// remove the tmpDir and any glueSrcDir it contains, must force because it's outside of working dir.
-			grunt.log.debug('Removing tmp dir %s', this.options.tmpDir);
-			this.isTmpDirCreated && grunt.file.delete(this.options.tmpDir, {force: true});
+			if (this.isTmpDirCreated) {
+				// remove the tmpDir and any glueSrcDir it contains, must force because it's outside of working dir.
+				grunt.verbose.writeln('Removing tmp dir %s'.cyan, this.options.tmpDir);
+				grunt.file.delete(this.options.tmpDir, {force: true});
+			}
 			return true;
 		}
 
@@ -219,7 +235,7 @@ module.exports = function (grunt) {
 		,copyFilesToTmpDir: function() {
 			var bundleTmpDir = path.join(this.options.tmpDir, this.options.bundleName);
 
-			grunt.log.debug('Creating tmp dir for glue: %s', bundleTmpDir);
+			grunt.verbose.writeln('Tmp dir for glue: %s', bundleTmpDir);
 
 			// copy all files to a tmp folder for glue to work in
 			this.taskFilesSrcArray.forEach(function eachSrcFile(file, index, array) {
@@ -229,12 +245,11 @@ module.exports = function (grunt) {
 
 				// file
 				if (!grunt.file.isDir(file)) {
-					grunt.log.debug('Copy file %s to tmp dir', file);
+					grunt.verbose.writeln('Copy file %s to tmp dir...'.cyan, file);
 					grunt.file.copy(file, path.join(bundleTmpDir, basename));
 				}
 				// folder
 				else {
-					grunt.log.debug('Copy folder %s to tmp dir', file);
 					this.copySubDir(file, bundleTmpDir, basename);
 				}
 			}, this);
@@ -253,6 +268,8 @@ module.exports = function (grunt) {
 				preserveFiles   : false, // If we're overwriting something and the file already exists, keep the existing
 				inflateSymlinks : true   // Whether to follow symlinks or not when copying files
 			});
+
+			grunt.verbose.writeln('Copy folder %s to tmp dir'.cyan+' Ok'.green, origDir);
 		}
 
 		,createGlueArgs: function() {
@@ -286,15 +303,16 @@ module.exports = function (grunt) {
 
 		,runGlue: function(cb) {
 			var options = {
-				    cmd: 'glue'
+					 cmd: 'glue'
 					,args: this.aGlueOptions
 				}
 			;
 
-			grunt.log.debug('> glue', this.aGlueOptions.join(' '));
+			cb = cb.bind(this);
+			grunt.verbose.writeln('$ glue %s'.cyan, this.aGlueOptions.join(' '));
 
 			grunt.util.spawn(options, function(err, result, code) {
-				cb(err, result)
+				cb(err, result);
 			});
 		}
 	};
