@@ -152,27 +152,16 @@ module.exports = function (grunt) {
 
 			this.runGlue(function runGlueCb(err, result) {
 
-				var stdout = result.stdout;
+				var  stdout;
 
-				if (this.verbose) {
+				if (this.verbose && result.stdout) {
+					stdout = result.stdout;
 					stdout = stdout.replace(/\t/gm, '    ');
 					stdout = stdout.replace(/^/gm, '[glue] ');
 					grunt.verbose.writeln(stdout);
 				}
 
-				if (err) {
-					// Glue thinks it's terrible when the src is empty. We don't
-					if (err.message.indexOf('No images found') !== -1) {
-						grunt.log.warn('No images to process');
-						grunt.verbose.writeln(err.message.replace(/^Error:/, '[glue]'));
-					}
-					else if (err.message.indexOf('argument is deprec') !== -1) {
-						grunt.log.warn(err.message.replace(/^usage.*$/m, '').replace(/glue: error:/mi, '[glue]'));
-					}
-					else {
-						grunt.fail.warn(err.message);
-					}
-				}
+				err && this.handleGlueErrors(err);
 
 				return compileCb();
 			});
@@ -318,9 +307,28 @@ module.exports = function (grunt) {
 				cb(err, result);
 			});
 		}
+
+		,handleGlueErrors: function(err) {
+			var isHandled = false;
+
+			// Glue thinks it's terrible when the src is empty. We don't
+			if (err.message.indexOf('No images found') !== -1) {
+				grunt.log.warn('No images to process');
+				grunt.verbose.writeln(err.message.replace(/^Error:/, '[glue]'));
+				isHandled = true;
+			}
+
+			/*if (err.message.indexOf('argument is deprec') !== -1) {
+				grunt.log.warn(err.message.replace(/^usage.*$/m, '').replace(/glue: error:/mi, '[glue]'));
+				isHandled = true;
+			}*/
+
+			if (!isHandled) {
+				grunt.fail.warn(err.message);
+			}
+		}
 	};
 
 };
-
 
 
