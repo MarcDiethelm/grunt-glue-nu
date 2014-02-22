@@ -166,6 +166,9 @@ module.exports = function (grunt) {
 						grunt.log.warn('No images to process');
 						grunt.verbose.writeln(err.message.replace(/^Error:/, '[glue]'));
 					}
+					else if (err.message.indexOf('argument is deprec') !== -1) {
+						grunt.log.warn(err.message.replace(/^usage.*$/m, '').replace(/glue: error:/mi, '[glue]'));
+					}
 					else {
 						grunt.fail.warn(err.message);
 					}
