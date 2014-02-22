@@ -19,7 +19,7 @@ migrate to this plugin quickly and sort things out later. Or dodge bugs, should 
 
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
+This plugin requires Grunt `~0.4.2`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -32,6 +32,16 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ```js
 grunt.loadNpmTasks('grunt-glue-nu');
 ```
+
+
+## Versions
+
+grunt-glue-nu >= v0.2.0 is compatible with glue >= v0.9<br>
+grunt-glue-nu  < v0.2.0 is compatible with glue <= v0.4
+
+To make old grunt-glue-nu <= v0.2.0 compatible with glue >= v0.9 in the task options set `debug: false` and remove any offending options that glue complains about. See: [Glue's changelog](http://glue.readthedocs.org/en/latest/changelog.html)
+
+You can install specific version of grunt-glue-nu with `npm install grunt-glue-nu@x.y.z --save-dev`
 
 
 ### Using the glue task
@@ -87,7 +97,6 @@ img       : dest dir          // Write the sprite sheet in your supplied dest
 recursive : true              // process sprites in sub-folders
 crop      : true              // crop sprites minimizing empty pixels
 force     : true              // forces glue to execute even if it detects no changes in the input
-debug     : true              // make glue return useful feedback
 ```
 
 Glue by itself will exit with an error code if there are no images in the source folders. grunt-glue-nu catches that, prints a
@@ -105,7 +114,6 @@ grunt.initConfig({
 			namespace          : 's',
 			'sprite-namespace' : '',
 			retina:            : true
-			optipng            : true
 		},
 		backgrounds: {
 			options: {

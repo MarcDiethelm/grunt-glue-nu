@@ -31,7 +31,6 @@ module.exports = function (grunt) {
 			,recursive  : true
 			,crop       : true
 			,force      : true
-			,debug      : true
 		}
 
 		,extendedOptions = [
