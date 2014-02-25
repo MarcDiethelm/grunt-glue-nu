@@ -36,7 +36,8 @@ grunt.loadNpmTasks('grunt-glue-nu');
 
 ## Versions
 
-grunt-glue-nu >= v0.2.0 is compatible with glue >= v0.9<br>
+grunt-glue-nu >= v0.3.0 is compatible with glue >= v0.9.0 <br>
+grunt-glue-nu >= v0.2.0 is compatible with glue <= v0.9.1 <br>
 grunt-glue-nu  < v0.2.0 is compatible with glue <= v0.4
 
 To make old grunt-glue-nu <= v0.2.0 compatible with glue >= v0.9 in the task options set `debug: false` and remove any offending options that glue complains about. See: [Glue's changelog](http://glue.readthedocs.org/en/latest/changelog.html)
@@ -92,8 +93,6 @@ In addition grunt-glue-nu has a few configuration options that are not passed on
 grunt-glue-nu sets some defaults for glue options that are deemed helpful.
 
 ```js
-css       : dest dir          // Write the sprite style sheet in your supplied dest
-img       : dest dir          // Write the sprite sheet in your supplied dest
 recursive : true              // process sprites in sub-folders
 crop      : true              // crop sprites minimizing empty pixels
 force     : true              // forces glue to execute even if it detects no changes in the input
@@ -102,14 +101,14 @@ force     : true              // forces glue to execute even if it detects no ch
 Glue by itself will exit with an error code if there are no images in the source folders. grunt-glue-nu catches that, prints a
 warning and lets Grunt continue doing its job. 
 
-### Longer usage example
+### Advanced usage example
 
 ```js
 grunt.initConfig({
 	glue: {
-		options: {
+		options: { // Defaults for all following tasks
 			css                : 'dist',
-			less               : true,
+			less               : true, // Boolean, output to des
 			url                : '/static/img',
 			namespace          : 's',
 			'sprite-namespace' : '',
@@ -125,6 +124,7 @@ grunt.initConfig({
 		icons: {
 			options: {
 				'sprite-namespace': 'icon'
+				less: 'less/output/path' // override dest
 			},
 			src: ['path/to/sprites/*.png'],
 			dest: 'output/folder/'
