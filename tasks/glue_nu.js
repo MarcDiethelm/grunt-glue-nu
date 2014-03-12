@@ -63,7 +63,7 @@ module.exports = function (grunt) {
 			.compile(function compileCb() {
 				bundle.clean();
 				done(); // tell grunt this task:target is complete
-				grunt.verbose.ok('Sprite bundle "%s" done', this.taskTargetName);
+				grunt.verbose.ok('Sprite bundle "%s" done', this.options.bundleName);
 			})
 		;
 

@@ -6,6 +6,7 @@
 
 ## 0.3.1 — 2014-03-12
 - Stricter type checking: unwrapped src array is not necessarily a string.
+- "Done" message (verbose): print `options.bundleName` instead of task 'target' name.
 
 ## 0.3.0 — 2014-02-25
 - Compatible with glue v0.9+.
