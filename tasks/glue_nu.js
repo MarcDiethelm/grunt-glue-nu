@@ -213,7 +213,7 @@ module.exports = function (grunt) {
 				src = taskDataSrc;
 			}
 			// is it an array consisting of one string?
-			else if (grunt.util.kindOf(taskDataSrc) === 'array' && taskDataSrc.length === 1) {
+			else if (grunt.util.kindOf(taskDataSrc) === 'array' && taskDataSrc.length === 1 && typeof taskDataSrc[0] === 'string') {
 				src = taskDataSrc[0];
 			}
 

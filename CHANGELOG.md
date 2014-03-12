@@ -4,6 +4,9 @@
 
 -
 
+## 0.3.1 — 2014-03-12
+- Stricter type checking: unwrapped src array is not necessarily a string.
+
 ## 0.3.0 — 2014-02-25
 - Compatible with glue v0.9+.
 - Compatible with specific path for `less` output in glue v0.9.2+.
@@ -16,14 +19,11 @@
 - Make plugin behave as described. The target name is the default bundle name.
 - Much improved `--verbose` logging. Use it when setting up tasks and when encountering problems.
 
-
 ## 0.1.1 — 2014-02-17
 - bugfix issue #2: Make sure `[..].taskdata.options` is defined. Thanks appolo for reporting!
 
-
 ## 0.1.0 — 2013-11-15
 - bugfix: Only add boolean option if value is true.
-
 
 ## 0.1.0-beta.1 — 2013-11-04
 - First version. Awesome.
