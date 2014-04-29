@@ -268,7 +268,7 @@ module.exports = function (grunt) {
 
 		,createGlueArgs: function() {
 			var  arg
-				,glueArgs = []
+				,glueArgs = [this.glueSrcDir] // add the source dir first
 			;
 
 			for (arg in this.options) {
@@ -289,8 +289,6 @@ module.exports = function (grunt) {
 					glueArgs.push('--'+ arg +'='+ this.options[arg]);
 				}
 			}
-
-			glueArgs.push(this.glueSrcDir); // add the source dir last
 
 			return glueArgs;
 		}
