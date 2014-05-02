@@ -141,7 +141,7 @@ module.exports = function (grunt) {
 		,compile: function(compileCb) {
 			if (!this.directToGlue) {
 				// build the args to glue from options
-				this.aGlueOptions = this.createGlueArgs(this.glueSrcDir, this.options);
+				this.aGlueOptions = this.createGlueArgs();
 			}
 			else {
 				this.aGlueOptions = this.taskData.options.glueArgs.split(' ');
