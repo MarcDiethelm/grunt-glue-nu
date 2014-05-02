@@ -4,6 +4,9 @@
 
 -
 
+## 0.3.2 — 2014-05-02
+- Use explicit `--source` instead of last arg to specify a source folder for glue to process. (Thanks Belelros!)
+
 ## 0.3.1 — 2014-03-12
 - Stricter type checking: unwrapped src array is not necessarily a string.
 - "Done" message (verbose): print `options.bundleName` instead of task 'target' name.
