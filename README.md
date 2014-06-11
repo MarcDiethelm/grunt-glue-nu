@@ -87,7 +87,7 @@ In addition grunt-glue-nu has a few configuration options that are not passed on
 - **options.tmpDir** `{String} require('os').tmpdir()` – A temporary source folder for glue to operate in. By default it's your OS's temp directory.
 
 - **options.glueArgs** `{Boolean} false` – Use `glueArgs` to set all arguments to the `glue` command manually as a string. All `options`, `src` and `dest` are
-	then ignored for this target. 
+	then ignored for this target.
 
 
 #### Default options for Glue
@@ -101,7 +101,7 @@ force     : true              // forces glue to execute even if it detects no ch
 ```
 
 Glue by itself will exit with an error code if there are no images in the source folders. grunt-glue-nu catches that, prints a
-warning and lets Grunt continue doing its job. 
+warning and lets Grunt continue doing its job.
 
 ### Advanced usage example
 
@@ -148,5 +148,3 @@ grunt.initConfig({
 
 ## Release History
 see [CHANGELOG.md](CHANGELOG.md)
-
-
