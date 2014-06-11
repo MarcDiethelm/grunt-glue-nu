@@ -1,3 +1,5 @@
+![npm version](http://b.adge.me/npm/v/grunt-glue-nu.svg)  &nbsp;&nbsp; [![gittip donate](http://b.adge.me/:gittip-donate-lightgrey.svg)](https://www.gittip.com/MarcDiethelm/)
+
 # grunt-glue-nu
 
 > Create sprites automatically with Glue, but the Grunt.js way!
